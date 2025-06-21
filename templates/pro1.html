@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestion Produits</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6 font-sans" g>
+  <h2 class="text-2xl font-bold mb-4">🛒 Ajouter un Produit</h2>
+  
+  <form action="/ajouter" method="post" id="formulaire" class="bg-white p-4 rounded shadow mb-8" enctype="multipart/form-data">
+    <div class="mb-4">
+      <label for="nom" class="block font-medium">Nom du produit :</label>
+      <input type="text" id="nom" class="w-full p-2 border rounded" name="nom" required>
+    </div>
+
+    <div class="mb-4">
+      <label for="categorie" class="block font-medium">Catégorie :</label>
+      <select id="categorie" name="categorie" class="w-full p-2 border rounded" required>
+        <option value="">--Sélectionner--</option>
+        <option value="1">Salles de fête</option>
+        <option value="2">Modele de robe</option>
+        <option value="3">Buffets Gâteaux mariage/anniversaire</option>
+      </select>
+    </div>
+
+    <div class="mb-4">
+      <label for="description" class="block font-medium">Description :</label>
+      <textarea id="description" name="description" rows="4" class="w-full p-2 border rounded" required></textarea>
+    </div>
+
+    <div class="mb-4">
+      <label for="fichier" class="block font-medium">Fichier à charger :</label>
+      <input type="file" id="fichier" name="fichier" class="w-full p-2 border rounded">
+    </div>
+
+    <div class="flex gap-2">
+      <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded">Ajouter</button>
+    </div>
+  </form>
+
+  <h2 class="text-xl font-semibold mb-2">📦 Liste des Produits</h2>
+  <ul id="listeProduits" class="space-y-3">
+    <!-- Les produits ajoutés vont apparaître ici -->
+     {% for produit in plc %}
+      <li class="bg-white shadow p-4 rounded flex justify-between items-start">
+        <div>
+          <p class="font-semibold">id :{{produit[0]}}</p>
+          <p class="text-sm text-gray-500">nom :{{produit[1]}}</p>
+          <p class="text-sm mt-1">categorie :{{produit[2]}}</p>
+          <img class="w-32 h-32 mx-auto block" src="{{ url_for('static', filename='images/' + produit[4]) }}">
+
+        </div>
+        <div class="space-x-2">
+          <button class="bg-yellow-500 text-white px-3 py-1 rounded">Modifier</button>
+          <a href="{{ url_for('sup', id=produit[0] )}}"><button onclick="{{ url_for('sup', id=produit[0] )}}" class="hover:scale-105 bg-red-600 text-white px-3 py-1 rounded " >Supprimer</button></a>
+        </div>
+      </li>
+      
+        {% endfor %}
+  </ul>
+
+ <!-- <script>
+    const form = document.getElementById('formulaire');
+    const liste = document.getElementById('listeProduits');
+
+    form.addEventListener('submit', function(e) {
+      await fetch(`/ajouter`);
+      e.preventDefault();
+      const nom = document.getElementById('nom').value;
+      const categorie = document.getElementById('categorie').value;
+      const description = document.getElementById('description').value;
+
+      const item = document.createElement('li');
+      item.className = 'bg-white shadow p-4 rounded flex justify-between items-start';
+      item.innerHTML = `
+      <li class="bg-white shadow p-4 rounded flex justify-between items-start">
+        <div>
+          <p class="font-semibold">${nom}</p>
+          <p class="text-sm text-gray-500">${categorie}</p>
+          <p class="text-sm mt-1">${description}</p>
+        </div>
+        <div class="space-x-2">
+          <button class="bg-yellow-500 text-white px-3 py-1 rounded">Modifier</button>
+          <button class="bg-red-600 text-white px-3 py-1 rounded">Supprimer</button>
+        </div>
+      </li>
+      `;
+      liste.appendChild(item);
+
+      form.reset();
+    });
+  </script>-->
+</body>
+</html>

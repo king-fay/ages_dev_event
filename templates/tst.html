@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FestiSite - Accueil</title>
+  <script src="{{ url_for('static',filename="js/index.js")}}"></script>
+  <script src="{{ url_for('static',filename="js/tailwind.js")}}"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-cover bg-center h-[60vh] flex items-center justify-center text-white text-center" style="background-image: url('https://images.unsplash.com/photo-1549924231-f129b911e442');">
+    <div class="bg-black/50 p-6 rounded">
+      <h1 class="text-4xl md:text-5xl font-bold mb-2">Bienvenue sur <span class="text-pink-300">FestiSite</span></h1>
+      <p class="text-xl">Organisez vos événements facilement</p>
+    </div>
+  </header>
+
+  <!-- Services -->
+  <section class="py-16 px-4 max-w-7xl mx-auto">
+    <h2 class="text-3xl font-semibold text-center mb-10">Nos Services</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Carte 1 -->
+       <a href="{{url_for('cat_p', cat=1)}}">
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden" >
+        <img src="{{ url_for('static',filename="images/salle1.jpg") }}" class="w-full h-48 object-cover" />
+        <div class="p-4">
+          <h3 class="text-xl font-bold mb-2">Salles de réception</h3>
+          <p>Choisissez parmi des lieux élégants pour vos fêtes, mariages et baptêmes.</p>
+        </div>
+      </div>
+    </a>
+
+      <!-- Carte 2 -->
+    <a href="{{url_for('cat_p', cat=2)}}">
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden" onclick="{{url_for('cat_p', cat=2)}}">
+        <img src="{{ url_for('static',filename="images/robe1.jpg") }}" alt="Robe" class="w-full h-48 object-cover" />
+        <div class="p-4">
+          <h3 class="text-xl font-bold mb-2">Robes de Mariage</h3>
+          <p>Découvrez une sélection de robes de mariée modernes et traditionnelles.</p>
+        </div>
+      </div>
+    </a>
+      <!-- Carte 3 -->
+    <a href="{{url_for('cat_p', cat=3)}}">
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden" onclick="{{url_for('cat_p', cat=3)}}">
+        <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092" alt="Buffet" class="w-full h-48 object-cover" />
+        <div class="p-4">
+          <h3 class="text-xl font-bold mb-2">Buffets & Gâteaux</h3>
+          <p>Commandez des buffets variés et des gâteaux sur mesure pour tout événement.</p>
+        </div>
+      </div>
+    </a>
+    </div>
+  </section>
+
+  <!-- Galerie -->
+  <section class="py-16 px-4 bg-white max-w-7xl mx-auto">
+    <h2 class="text-3xl font-semibold text-center mb-10">Galerie</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <a href="{{url_for('cat_p', cat=1) }}" class="hover:scale-110 transition-transform duration-300"><img src="{{ url_for('static',filename="images/salle1.jpg" ) }}" class="rounded-lg object-cover h-40 w-full" alt="Buffet"></a>
+      <a href="{{url_for('cat_p', cat=1) }}" class="hover:scale-110 transition-transform duration-300"><img src="{{ url_for('static',filename="images/salle2.jpg" ) }}" class="rounded-lg object-cover h-40 w-full" alt="Buffet"></a>
+      <a href="{{url_for('cat_p', cat=2) }}" class="hover:scale-110 transition-transform duration-300"><img src="{{ url_for('static',filename="images/robe1.jpg" ) }}" class="rounded-lg object-cover h-40 w-full" alt="Buffet"></a>
+      <a href="{{url_for('cat_p', cat=2) }}" class="hover:scale-110 transition-transform duration-300"><img src="{{ url_for('static',filename="images/robe2.jpg" ) }}" class="rounded-lg object-cover h-40 w-full" alt="Buffet"></a>
+      <a href="{{url_for('cat_p', cat=3) }}" class="hover:scale-110 transition-transform duration-300"><img src="{{ url_for('static',filename="images/buf2.jpg" ) }}" class="rounded-lg object-cover h-40 w-full" alt="Buffet"></a>
+      <a href="{{url_for('cat_p', cat=3) }}" class="hover:scale-110 transition-transform duration-300"><img src="{{ url_for('static',filename="images/buf1.jpg" ) }}" class="rounded-lg object-cover h-40 w-full" alt="Buffet"></a>
+    </div>
+  </section>
+
+  <!-- Contact rapide -->
+  <section class="py-16 px-4 text-center max-w-2xl mx-auto">
+    <h2 class="text-3xl font-semibold mb-4">Vous avez une demande ?</h2>
+    <p class="mb-6 text-gray-600">Contactez-nous pour obtenir une proposition personnalisée adaptée à votre événement.</p>
+    <a href="https://wa.me/22870783376" class="inline-block bg-pink-600 hover:bg-pink-700 text-white font-semibold py-3 px-6 rounded shadow">
+      Demander un devis
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white text-center py-6">
+    <p>&copy; 2025 FestiSite - Tous droits réservés.</p>
+  </footer>
+  
+</body>
+</html>

@@ -1,0 +1,16 @@
+function showSlideGateau(i) {
+      const slideWidth = carouselGateau.clientWidth;
+      carouselGateau.style.transform = `translateX(-${i * slideWidth}px)`;
+    }
+
+    function nextSlideGateau() {
+      indexGateau = (indexGateau + 1) % totalSlidesGateau;
+      showSlideGateau(indexGateau);
+    }
+
+    function prevSlideGateau() {
+      indexGateau = (indexGateau - 1 + totalSlidesGateau) % totalSlidesGateau;
+      showSlideGateau(indexGateau);
+    }
+
+    window.addEventListener('resize', () => showSlideGateau(indexGateau));

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Produits</title>
+    <script src="{{ url_for('static', filename='js/tailwind.js')}}"></script>
+</head>
+<body  class="bg-gray-100 text-gray-800 font-sans">
+
+    <header class="bg-pink-600 text-white py-6 text-center">
+        <h1 class="text-3xl font-bold">Nos Produits</h1>
+        <p class="text-sm mt-2">Salles, Robes et Buffets pour vos événements.</p>
+    </header>
+    <p id="cat_num" class="hidden">{{prod}}</p>
+    <main class="flex flex-wrap justify-center p-6" id="productList">
+        <!-- Les produits seront chargés ici -->
+
+    </main>
+
+    <!-- Popup de réservation -->
+    <!-- <form action="/envoyer" method='POST'> -->
+
+    <div id="reservationModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+            <h2 class="text-xl font-bold mb-4">Réserver <span id="selectedProduct"></span></h2>
+            <span id="images" class="hidden"></span>
+            <p class="text-gray-700">Veuillez entrer vos informations.</p>
+
+            <input type="text" id="nom" name="nom" placeholder="Nom" class="border p-2 w-full mt-2" requied>
+            <input type="email" id="email" name="email" placeholder="Email" class="border p-2 w-full mt-2" requied>
+            <div class="flex items-center border rounded-lg p-2 w-80">
+              <select id="indicatif" name="indicatif" class="bg-gray-200 border-none outline-none p-2" requied>
+                  <option value="+33">🇫🇷 +33 (France)</option>
+                  <option value="+225">🇨🇮 +225 (Côte d'Ivoire)</option>
+                  <option value="+228">🇹🇬 +228 (Togo)</option>
+                  <option value="+1">🇺🇸 +1 (USA)</option>
+              </select>
+              <input type="tel" id="numero" name="numero" class="ml-2 w-full p-2 outline-none" placeholder="Votre numéro" requied>
+            </div>
+            
+            <button onclick="envoyer()" class="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700" >Valider la réservation</button>
+            <button id="closeModal" onclick="fermer()" class="mt-2 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700">Fermer</button>
+        </div>
+    </div>
+  <script src="{{ url_for('static', filename='js/def.js') }}"></script>
+  
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gâteaux de Mariage et Anniversaire</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+
+  <header class="bg-amber-500 text-white py-6 text-center shadow">
+    <h1 class="text-3xl font-bold">Nos Gâteaux de Mariage & Anniversaire</h1>
+    <p class="text-sm mt-1">Des créations sucrées pour sublimer vos plus beaux moments</p>
+  </header>
+
+  <main class="flex flex-col items-center justify-center px-4 py-10">
+
+    <div class="relative w-full max-w-3xl overflow-hidden rounded-2xl shadow-lg">
+      <div id="carousel-gateau" class="flex transition-transform duration-700 ease-in-out">
+        <img src="images/gateau1.jpg" class="w-full flex-shrink-0 object-cover h-[450px]" alt="Gâteau 1">
+        <img src="images/gateau2.jpg" class="w-full flex-shrink-0 object-cover h-[450px]" alt="Gâteau 2">
+        <img src="images/gateau3.jpg" class="w-full flex-shrink-0 object-cover h-[450px]" alt="Gâteau 3">
+      </div>
+
+      <!-- Navigation Buttons -->
+      <button onclick="prevSlideGateau()" class="absolute top-1/2 -translate-y-1/2 left-2 bg-white text-amber-600 rounded-full shadow p-2 hover:bg-amber-100">
+        &#10094;
+      </button>
+      <button onclick="nextSlideGateau()" class="absolute top-1/2 -translate-y-1/2 right-2 bg-white text-amber-600 rounded-full shadow p-2 hover:bg-amber-100">
+        &#10095;
+      </button>
+    </div>
+
+    <p class="mt-6 max-w-xl text-center text-gray-600">
+      Gâteaux personnalisés selon vos envies, saveurs variées, décoration sur mesure. Réservez à l'avance pour un service de qualité.
+    </p>
+  </main>
+
+  <footer class="text-center text-sm text-gray-500 py-4 border-t">
+    &copy; 2025 - Mon site d'événementiel | Conçu par une experte IT
+  </footer>
+
+  <script>
+    const carouselGateau = document.getElementById('carousel-gateau');
+    const totalSlidesGateau = carouselGateau.children.length;
+    let indexGateau = 0;
+
+    
+  </script>
+
+</body>
+</html>

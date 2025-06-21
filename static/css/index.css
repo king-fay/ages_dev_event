@@ -1,0 +1,27 @@
+body {
+      font-family: 'Segoe UI', sans-serif;
+    }
+    header {
+      background: url('https://images.unsplash.com/photo-1549924231-f129b911e442') no-repeat center center/cover;
+      color: white;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-shadow: 2px 2px 5px black;
+    }
+    .section-title {
+      margin-top: 50px;
+      margin-bottom: 30px;
+    }
+    .card img {
+      height: 200px;
+      object-fit: cover;
+    }
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 50px;
+    }

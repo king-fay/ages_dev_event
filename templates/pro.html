@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestion Produits</title>
+  <script src="{{url_for('static', filename="js/tailwind.js")}}"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          animation: {
+            fadeIn: "fadeIn 0.8s ease-out"
+          },
+          keyframes: {
+            fadeIn: {
+              "0%": { opacity: 0, transform: "translateY(20px)" },
+              "100%": { opacity: 1, transform: "translateY(0)" }
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gradient-to-br from-purple-100 to-blue-100 min-h-screen p-6 font-sans text-gray-800">
+
+  <div class="max-w-4xl mx-auto">
+
+    <h2 class="text-3xl font-extrabold mb-6 text-center text-purple-800">🛒 Ajouter un Produit</h2>
+
+    <form action="/ajouter" method="post" id="formulaire" enctype="multipart/form-data"
+          class="bg-white p-6 rounded-2xl shadow-xl ring-1 ring-purple-200 mb-10 animate-fadeIn">
+      
+      <div class="mb-5">
+        <label for="nom" class="block font-medium text-purple-700">Nom du produit :</label>
+        <input type="text" id="nom" name="nom"
+               class="w-full mt-1 p-3 border border-purple-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
+               required>
+      </div>
+
+      <div class="mb-5">
+        <label for="categorie" class="block font-medium text-purple-700">Catégorie :</label>
+        <select id="categorie" name="categorie"
+                class="w-full mt-1 p-3 border border-purple-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
+                required>
+          <option value="">--Sélectionner--</option>
+          <option value="1">Salles de fête</option>
+          <option value="2">Modèle de robe</option>
+          <option value="3">Buffets Gâteaux mariage/anniversaire</option>
+        </select>
+      </div>
+
+      <div class="mb-5">
+        <label for="description" class="block font-medium text-purple-700">Description :</label>
+        <textarea id="description" name="description" rows="4"
+                  class="w-full mt-1 p-3 border border-purple-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
+                  required></textarea>
+      </div>
+
+      <div class="mb-6">
+        <label for="fichier" class="block font-medium text-purple-700">Fichier à charger :</label>
+        <input type="file" id="fichier" name="fichier"
+               class="w-full mt-1 p-3 border border-purple-300 rounded-lg bg-white">
+      </div>
+
+      <div class="text-right">
+        <button type="submit"
+                class="bg-purple-600 hover:bg-purple-700 hover:scale-105 text-white font-semibold px-6 py-2 rounded-lg transition duration-200">
+          ➕ Ajouter
+        </button>
+      </div>
+    </form>
+
+    <h2 class="text-2xl font-bold mb-4 text-purple-800">📦 Liste des Produits</h2>
+    
+    <ul id="listeProduits" class="space-y-4">
+      {% for produit in plc %}
+        <li class="bg-white shadow-md rounded-xl p-5 flex justify-between items-start animate-fadeIn hover:ring-2 hover:ring-purple-200 transition">
+          <div class="space-y-2">
+            <p class="font-bold text-purple-700">🆔 ID : {{produit[0]}}</p>
+            <p class="text-sm text-gray-600">📝 Nom : <span class="font-medium">{{produit[1]}}</span></p>
+            <p class="text-sm text-gray-600">📂 Catégorie : <span class="italic">{{produit[2]}}</span></p>
+            <img class="w-32 h-32 object-cover rounded-md border mt-2"
+                 src="{{ url_for('static', filename='images/' + produit[4]) }}" alt="Image produit">
+          </div>
+          <div class="flex flex-col space-y-2">
+            <button class="bg-yellow-400 hover:bg-yellow-500 hover:scale-105 text-white px-4 py-1 rounded-lg transition">✏️ Modifier</button>
+            <a href="{{ url_for('sup', id=produit[0]) }}">
+              <button class="bg-red-500 hover:bg-red-600 hover:scale-105 text-white px-4 py-1 rounded-lg transition">🗑️ Supprimer</button>
+            </a>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+</body>
+</html>
