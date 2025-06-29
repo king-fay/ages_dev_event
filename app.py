@@ -19,7 +19,7 @@ app.config.update(
     MAIL_USE_TLS=True,
     MAIL_USERNAME='ucosangel@gmail.com',
     MAIL_PASSWORD='tjxq qmkm mbzp ytuu',
-    MAIL_DEFAULT_SENDER='ucosangel@gmail.com'
+    MAIL_DEFAULT_SENDER='ucosangel@gmail.com',
 )
 
 mail = Mail(app)
@@ -46,8 +46,8 @@ def add():
 
 @app.route('/verification', methods=['POST'])
 def verification():
-    nom = request.form.get('nom')
-    prenom = request.form.get('prenom')
+    nom = request.form.get('nom').lower()
+    prenom = request.form.get('prenom').lower()
     code = request.form.get('code')
 
     if nom in ad['nom']:
@@ -79,27 +79,22 @@ def sup():
     return render_template('pro.html', plc=tout())
 
 
-
 @app.route('/envoyer', methods=['POST'])
 def envoyer():
-    """noms : noms,
-          nom: nom,
-          email: email,
-          indicatif: indicatif,
-          numero: numero,
-          images: images,"""
     data = request.get_json()
     noms = data.get('noms')
     nom = data.get('nom')
     email = data.get('email')
-    num = str(data.get('indicatif'))+str(data.get('numero'))
+    num = str(data.get('numero')).replace("+","")
     nom_image = data.get('images')
 
+    mess = "cc ici agesdev premier teste de la messagerie"
+    if num:
+            envoyerm(num, nom_image, mess)
 
     if email.strip():
         # 📁 Chemin absolu vers l'image locale
         image_path = os.path.join("D:/flask/Projet_Organisation/static/images", nom_image)
-
         # 📧 Préparation de l'email HTML avec image inline
         message = Message(subject="Image locale en pièce jointe", recipients=[email.strip()])
         message.html = f"""

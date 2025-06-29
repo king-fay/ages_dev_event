@@ -49,6 +49,7 @@ document.getElementById("numero").addEventListener("input", () => {
 
 
 function envoyer() {
+
       // 1. Récupérer les valeurs des inputs
       let images = document.getElementById("images").innerText;
       let noms = document.getElementById("selectedProduct").innerText;
@@ -56,7 +57,6 @@ function envoyer() {
       const email = document.getElementById("email").value;
       const numero = document.getElementById("numero").value;
       const indicatif = document.getElementById("indicatif").value;
-        
       // 2. Envoyer à Flask avec fetch()
       fetch('/envoyer', {
         method: 'POST',
@@ -77,6 +77,17 @@ function envoyer() {
         console.log(data)
       })
       .catch(error => console.error("Erreur :", error));
-
       fermer();
+      cacher_pop(noms, nom);
     };
+
+function cacher_pop(noms, nom){
+      const popup = document.getElementById("popup")
+      popup.innerHTML = "Reservation de "+noms+" faite avec succès "+nom;
+        popup.classList.remove("hidden")
+        popup.classList.add("animate-slide-up");
+        setTimeout(()=>{
+          popup.classList.add("hidden")
+        }, 5000)
+      
+    }

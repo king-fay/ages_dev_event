@@ -4,15 +4,35 @@
     <meta charset="UTF-8">
     <title>Liste des Produits</title>
     <script src="{{ url_for('static', filename='js/tailwind.js')}}"></script>
+    <style>
+    @keyframes slide-up {
+      0% {
+        transform: translateY(100%);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .animate-slide-up {
+      animation: slide-up 0.7s ease-out forwards;
+    }
+  </style>
 </head>
 <body  class="bg-gray-100 text-gray-800 font-sans">
-
     <header class="bg-pink-600 text-white py-6 text-center">
         <h1 class="text-3xl font-bold">Nos Produits</h1>
         <p class="text-sm mt-2">Salles, Robes et Buffets pour vos événements.</p>
     </header>
+
     <p id="cat_num" class="hidden">{{prod}}</p>
+        <div id="popup" class="fixed top-5 right-5 bg-violet-600 text-white px-6 py-3 rounded shadow-lg z-50 hidden" >
+            Messages envoyé avec succes 
+        </div>
     <main class="flex flex-wrap justify-center p-6" id="productList">
+        
         <!-- Les produits seront chargés ici -->
 
     </main>
@@ -43,6 +63,7 @@
         </div>
     </div>
   <script src="{{ url_for('static', filename='js/def.js') }}"></script>
+
   
 </body>
 </html>

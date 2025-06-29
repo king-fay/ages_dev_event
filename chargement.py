@@ -1,6 +1,11 @@
 import sqlite3
-from flask import jsonify
+from flask import jsonify, request
 import requests
+
+def chemin(image_filename):
+    base_url = request.host_url  # récupère https://ton-app.onrender.com/
+    return "http://127.0.0.1:5000"+'/static/images/' + image_filename
+
 
 class objet():
     categorie : int
@@ -52,17 +57,17 @@ def supprimer(id):
 
 
 def envoyerm(numero, image_url, texte):
-    url = 'https://graph.facebook.com/v19.0/452818691254862/messages'
-    token = "EAAHy0SjknM8BO7KbOBPgOcH4FJKaI548N3IfNBo6L7eyAFsUro2nZBqRZBSrqrwa9NOXNtKkrgWzANGtl6LAvxWPG5kZAUfZAZA8XqYwLNg0hKlgJcRi5ZBAZAGZCMPcGrZA69ZBbwFvqTVM6sFD6VxRPD57gYuHxLoDiyNvjkVFcZBlpQjKb9V3AgeNQGIZB0YZBcJN44wgtppK47FnAgT03GeqZBlgnGmGYSJEPQhWsRQgZDZD"
-
+    numero = numero.replace(" ","")
+    url = 'https://graph.facebook.com/v19.0/646976848507542/messages'
+    token = "EAAT4mcBcJ54BO5TPRZA7bOuAmvfRCCxlUV2dcAzKBInBpzY6B9VIKzpP9EYF3qJHekNkhD8vrdqMVscd2qJuZAp0nDLOeD9zkR5JLZBTMm7NjkYdJDlmmHMZAxsTrJtVZA6Qx8gDrtPTnIpXorJqRxWMUXHgllLajM87ZCBITJPZBRMB3NO1XNraaeRccbogQaIexhKpxjrOjIOmZA8Uv1koXdZB91RBr8WwgkK59A4hTlXNZCFGRm"
     headers = {
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json"
     }
 
-    image_url= image_url = "http://127.0.0.1:5000/static/images/"+str(image_url)
+    image_url= chemin(str(image_url))
     
-    payload = {
+    """payload = {
         'messaging_product': 'whatsapp',
         'to': numero,
         'type': 'image',
@@ -70,7 +75,16 @@ def envoyerm(numero, image_url, texte):
             'link': image_url,
             'caption': texte
         }
+    }"""
+    payload = {
+    "messaging_product": "whatsapp",
+    "to": numero,
+    "type": "text",
+    "text": {
+        "body": "Hello depuis Flask 🧪"
     }
+    }
+
 
     response = requests.post(url, headers=headers, json=payload)
     print(response.status_code)
